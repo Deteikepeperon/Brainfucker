@@ -27,3 +27,16 @@ make
 "," | read one character from input into value at pointer
 "[" | begin loop (continues while value as pointer is non-zero)
 "]" | end loop
+
+<br>
+
+## Sample Program
+```
+sample/
+    ├ Brainfuck.bf
+    ├ Excellent.bf
+    ├ Hello_World.bf
+    ├ OK.bf
+    ├ toyoda.bf
+    └ Very_poor.bf
+```
