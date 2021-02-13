@@ -1,9 +1,29 @@
 # Brainfucker
 
+Brainfuck Interpreter
+
+<br>
+
 ## Setup
 ```
 mkdir build && cd build
 cmake ..
+
 make
-./brainfuck
+./brainfuck ../sample/Hello_World.bf
 ```
+
+<br>
+
+## Brainfuck commands
+
+| Character | Meaning |
+|:--:|:--|
+">" | increment pointer
+"<" | decrement pointer
+"+" | increment value at pointer
+"-" | decrement value at pointer
+"." | print value at pointer to output as a character
+"," | read one character from input into value at pointer
+"[" | begin loop (continues while value as pointer is non-zero)
+"]" | end loop
