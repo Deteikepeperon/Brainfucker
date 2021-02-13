@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <cstdio>
 
 constexpr int MEMORY_SIZE = 30000;
 
@@ -19,7 +20,6 @@ int main(int argc, char *argv[])
 {
   unsigned int memory_ptr = 0;          // a memory pointer
   unsigned int code_ptr = 0;            // a code pointer
-  unsigned int code_len = 0;            // length of the code
 
   unsigned char memory[MEMORY_SIZE];    // an array of bytes with at least 30000 elements initialized to zero
   memset(memory, 0, sizeof(memory));
@@ -47,12 +47,69 @@ int main(int argc, char *argv[])
   buf << file.rdbuf();
   std::string code(buf.str());
 
-  // code_len = code.size();
 
+  // Brainfuck analysis
+  while (code_ptr < code.size()) {
+    switch (code[code_ptr]) {
 
-  // debug
-  std::cout << code.size() << " byte\n" << code << std::endl;
+      case INCREMENT:
+        memory[memory_ptr]++;
+        break;
 
+      case DECREMENT:
+        memory[memory_ptr]--;
+        break;
+
+      case RIGHT:
+        memory_ptr = (memory_ptr == MEMORY_SIZE) ? 0 : memory_ptr += 1;
+        break;
+
+      case LEFT:
+        memory_ptr = (memory_ptr == 0) ? MEMORY_SIZE - 1 : memory_ptr -= 1;
+        break;
+
+      case INPUT:
+        memory[memory_ptr] = getchar();
+        break;
+
+      case OUTPUT:
+        putchar(memory[memory_ptr]);
+        break;
+
+      case START:
+        if (memory[memory_ptr] == 0) {
+          int loop = 1;
+
+          while (code[code_ptr != ']']) {
+            code_ptr++;
+
+            if (code[code_ptr] == '[')  loop++;
+            if (code[code_ptr] == ']')  loop--;
+          }
+        }
+        break;
+
+      case END:
+        if (memory[memory_ptr] != 0) {
+          int loop = 1;
+
+          while (code[code_ptr] != '[') {
+            code_ptr--;
+
+            if (code[code_ptr] == ']') loop++;
+            if (code[code_ptr] == '[') loop--;
+          }
+        }
+        break;
+
+      default:
+        break;
+    }
+
+    code_ptr++;
+  }
+
+  std::cout << std::endl;
 
   return 0;
 }
