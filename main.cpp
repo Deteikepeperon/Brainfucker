@@ -1,8 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <sstream>
-#include <cstdio>
 
 constexpr int MEMORY_SIZE = 30000;
 
@@ -78,11 +76,9 @@ int main(int argc, char *argv[])
 
       case START:
         if (memory[memory_ptr] == 0) {
-          int loop = 1;
+          int loop = 0;
 
-          while (code[code_ptr != ']']) {
-            code_ptr++;
-
+          for (code_ptr++; loop > 0 || code[code_ptr] != ']'; code_ptr++) {
             if (code[code_ptr] == '[')  loop++;
             if (code[code_ptr] == ']')  loop--;
           }
@@ -91,14 +87,14 @@ int main(int argc, char *argv[])
 
       case END:
         if (memory[memory_ptr] != 0) {
-          int loop = 1;
+          int loop = 0;
 
-          while (code[code_ptr] != '[') {
-            code_ptr--;
-
+          for (code_ptr--; loop > 0 || code[code_ptr] != '['; code_ptr--) {
             if (code[code_ptr] == ']') loop++;
             if (code[code_ptr] == '[') loop--;
           }
+
+          code_ptr--;
         }
         break;
 
