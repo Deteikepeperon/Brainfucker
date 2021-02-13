@@ -35,6 +35,7 @@ make
 sample/
     ├ Brainfuck.bf
     ├ Excellent.bf
+    ├ FizzBuzz.bf
     ├ Hello_World.bf
     ├ OK.bf
     ├ toyoda.bf
