@@ -37,7 +37,7 @@ sample/
     ├ Excellent.bf
     ├ FizzBuzz.bf
     ├ Hello_World.bf
-    ├ OK.bf
     ├ toyoda.bf
-    └ Very_poor.bf
+    ├ Very_poor.bf
+    └ Yes.bf
 ```
